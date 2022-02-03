@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
           steps {
             sh 'echo "building the repo"'
-            sh "sudo docker build -t flask-app ."
+            sh "docker build -t flask-app ."
           }
     }
 
@@ -18,7 +18,7 @@ pipeline {
     {
       steps {
         echo "deploying the application"
-        sh "sudo docker run -p 5000:5000 --name flask-app -d flask-app "
+        sh "docker run -p 5000:5000 --name flask-app -d flask-app "
       }
     }
 
