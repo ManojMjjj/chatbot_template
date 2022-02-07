@@ -23,20 +23,3 @@ pipeline {
     }
 
   }
-
-  post {
-        always {
-            echo 'The pipeline completed'
-            junit allowEmptyResults: true, testResults:'**/test_reports/*.xml'
-        }
-        success {
-            
-            bat "sudo nohup python3 app.py > log.txt 2>&1 &"
-            echo "Flask Application Up and running!!"
-        }
-        failure {
-            echo 'Build stage failed'
-            error('Stopping early…')
-        }
-      }
-}
