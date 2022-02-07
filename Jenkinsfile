@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build') {
           steps {
-            sh 'echo "building the repo"'
-            sh "docker build -t flask-app ."
+            bat 'echo "building the repo"'
+            bat "docker build -t flask-app ."
           }
     }
 
@@ -18,7 +18,7 @@ pipeline {
     {
       steps {
         echo "deploying the application"
-        sh "docker run -p 5000:5000 --name flask-app -d flask-app "
+        bat "docker run -p 5000:5000 --name flask-app -d flask-app "
       }
     }
 
@@ -31,7 +31,7 @@ pipeline {
         }
         success {
             
-            sh "sudo nohup python3 app.py > log.txt 2>&1 &"
+            bat "sudo nohup python3 app.py > log.txt 2>&1 &"
             echo "Flask Application Up and running!!"
         }
         failure {
